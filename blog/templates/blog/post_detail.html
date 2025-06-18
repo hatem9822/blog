@@ -1,0 +1,89 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }} | My Blog{% endblock %}
+
+{% block content %}
+    <div class="post-detail-container">
+        <article class="post-detail-card">
+            <h2 class="post-title">{{ post.title }}</h2>
+            <div class="post-meta">
+                <span class="post-author">👤 {{ post.author }}</span>
+                <span class="post-date">
+                    📅 {{ post.published_date|date:"M d, Y H:i" }}
+                </span>
+            </div>
+            <div class="post-text post-detail-text">
+                {{ post.text|linebreaksbr }}
+            </div>
+            <a href="{% url 'post_list' %}" class="back-to-list">← Back to all posts</a>
+        </article>
+    </div>
+    <style>
+        .post-detail-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 40px;
+        }
+        .post-detail-card {
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            padding: 40px 32px 32px 32px;
+            max-width: 700px;
+            width: 100%;
+            position: relative;
+        }
+        .post-detail-card .post-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 18px;
+        }
+        .post-detail-card .post-meta {
+            display: flex;
+            justify-content: flex-start;
+            gap: 30px;
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-bottom: 25px;
+        }
+        .post-detail-card .post-author {
+            color: #667eea;
+            font-weight: 600;
+        }
+        .post-detail-card .post-date {
+            background: #f8f9fa;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+        }
+        .post-detail-card .post-detail-text {
+            color: #444;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            white-space: pre-line;
+        }
+        .back-to-list {
+            display: inline-block;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 22px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        .back-to-list:hover {
+            background: linear-gradient(90deg, #764ba2, #667eea);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+        @media (max-width: 800px) {
+            .post-detail-card {
+                padding: 20px 8px 16px 8px;
+            }
+        }
+    </style>
+{% endblock %}
